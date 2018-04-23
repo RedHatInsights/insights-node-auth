@@ -16,9 +16,9 @@ funcs.validateUser = (user) => {
     user.should.have.property('org_id', '1979710');
     user.should.have.property('is_active', true);
     user.should.have.property('is_org_admin', true);
-    user.should.have.property('is_internal', true);
+    user.should.have.property('is_internal', false);
     user.should.have.property('sso_username', USER);
-    user.should.have.property('email', 'ihands@redhat.com');
+    user.should.have.property('email', 'ihands+insightstest@redhat.com');
     user.should.have.property('locale', 'en_US');
     user.should.have.property('mechanism');
     user.should.have.property('cachehit');
@@ -40,9 +40,9 @@ describe('Functional Tests:', () => {
                 url: 'https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token',
                 form: {
                     grant_type: 'password',
-                    client_id:  'customer-portal',
-                    username:   USER,
-                    password:   PASS
+                    client_id: 'customer-portal',
+                    username: USER,
+                    password: PASS
                 }
             };
             request.post(opts, (err, res, body) => {
@@ -262,7 +262,7 @@ describe('Functional Tests:', () => {
 
         });
 
-        describe('keycloakJwt', function() {
+        describe('keycloakJwt', function () {
             beforeEach(() => {
                 mocks.addCookie('rh_jwt', rh_jwt);
             });
