@@ -46,7 +46,7 @@ describe('Unit Tests:', () => {
 
         const getFromise = (user) => {
             const fromise = {
-                then:  (cb) => {
+                then: (cb) => {
                     cb({
                         user: user
                     });
@@ -143,7 +143,7 @@ describe('Unit Tests:', () => {
 
             beforeMechanisms.push(passMechanism);
             td.when(passMechanism.prototype.tryAuth()).thenReturn(getFromise(passUser));
-            passMechanism.prototype.__defineGetter__("name", function() { return 'FooBar'; });
+            passMechanism.prototype.__defineGetter__('name', function () { return 'FooBar'; });
 
             auth.execChain(mocks.app, beforeMechanisms.concat(afterMechanisms), deferred);
             mocks.next(); // start the app
@@ -186,6 +186,7 @@ describe('Unit Tests:', () => {
         let mechanism;
 
         beforeEach(() => {
+
             // get a new one each time an it is run
             mechanism = new auth.smwBasic();
         });
@@ -195,7 +196,7 @@ describe('Unit Tests:', () => {
                 td.when(request(td.matchers.anything())).thenCallback(false, { statusCode: 500 }, 'test');
 
                 mechanism.fail = (msg) => {
-                    msg.should.equal('Got a bad statusCode from SmwBasicAuth: 500');
+                    msg.should.equal('Got a bad statusCode from backoffice-proxy: 500');
                     done();
                 };
 
@@ -226,16 +227,6 @@ describe('Unit Tests:', () => {
                 userObject.should.have.property('is_org_admin', true);
                 userObject.should.have.property('is_internal', true);
             });
-
-            it('should detect the absence of the internal and org admin roles', () => {
-                const userObject = mechanism.buildUserObject(getInput({
-                    roles: []
-                }));
-                funcs.validateUser(userObject);
-                userObject.should.have.property('is_active', true);
-                userObject.should.have.property('is_org_admin', false);
-                userObject.should.have.property('is_internal', false);
-            });
         });
     });
 
@@ -243,6 +234,7 @@ describe('Unit Tests:', () => {
         let mechanism;
 
         beforeEach(() => {
+
             // get a new one each time an it is run
             mechanism = new auth.cert();
         });
@@ -284,6 +276,7 @@ describe('Unit Tests:', () => {
         let mechanism;
 
         beforeEach(() => {
+
             // get a new one each time an it is run
             mechanism = new auth.strataBasic();
         });
@@ -293,7 +286,7 @@ describe('Unit Tests:', () => {
                 td.when(request(td.matchers.anything())).thenCallback(false, { statusCode: 500 }, 'test');
 
                 mechanism.fail = (msg) => {
-                    msg.should.equal('Got a bad statusCode from StrataBasicAuth: 500');
+                    msg.should.equal('Got a bad statusCode from backoffice-proxy: 500');
                     done();
                 };
 
@@ -324,20 +317,6 @@ describe('Unit Tests:', () => {
                 userObject.should.have.property('is_org_admin', true);
                 userObject.should.have.property('is_internal', true);
             });
-
-            it('should detect the absence of the internal role', () => {
-                const userObject = mechanism.buildUserObject(getInput({
-                    rights: {
-                        right: [
-                            { name: 'AllowEmailContact', has_access: false }
-                        ]
-                    }
-                }));
-                funcs.validateUser(userObject);
-                userObject.should.have.property('is_active', true);
-                userObject.should.have.property('is_org_admin', true);
-                userObject.should.have.property('is_internal', false);
-            });
         });
     });
 
@@ -345,6 +324,7 @@ describe('Unit Tests:', () => {
         let mechanism;
 
         beforeEach(() => {
+
             // get a new one each time an it is run
             mechanism = new auth.keycloakJwt();
         });
@@ -382,7 +362,7 @@ describe('Unit Tests:', () => {
 
             it('should detect internal and org_admin being missing', () => {
                 const userObject = mechanism.buildUserObject(getInput({
-                    realm_access: { roles: [ 'foo' ] }
+                    realm_access: { roles: ['foo'] }
                 }));
                 funcs.validateUser(userObject);
                 userObject.should.have.property('is_org_admin', false);

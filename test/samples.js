@@ -24,67 +24,58 @@ const pub = {
 
 module.exports.pub = pub;
 
-module.exports.certUserObject = {
-    oracleCustomerNumber: Number(pub.accountNumber),
-    displayName: pub.orgId,
-    id: '8a85f9812e1deadbeef2134',
-    href: `/owners/${pub.orgId}`,
-    key: pub.orgId
+module.exports.certUserObject =  {
+    user: {
+        id: 123456,
+        username: 'bob-loblaws-law-blog',
+        email: 'bobloblaw@example.com',
+        first_name: 'Bob',
+        last_name: 'Lowlaw',
+        account_number: '12345',
+        address_string: '"Bob Lowlaw" bobloblaw@example.com',
+        is_active: true,
+        is_org_admin: true,
+        is_internal: false,
+        locale: 'en_US',
+        org_id: '54321'
+    },
+    mechanism: 'cert'
 };
 
 module.exports.smwBasicUserObject = {
-    roles: [
-        { group: 'cloud_access_1', roles: [ 'ADMIN' ] },
-        { group: 'admin:org:all', roles: [ 'ADMIN' ] },
-        { group: 'cservice', roles: [ 'USER' ] },
-        { group: 'redhat:employees', roles: [ 'USER' ] }
-    ],
-    id: 5299389,
-    login: pub.ssoUsername,
-    loginUppercase: pub.ssoUsername.toUpperCase(),
-    password: null,
-    active: true,
-    oracleContactId: null,
-    orgId: pub.orgId,
-    contactPermissions: {
-        allowEmailContact: false,
-        allowFaxContact: false,
-        allowMailContact: false,
-        allowPhoneContact: false,
-        allowThirdPartyContact: false
+    user: {
+        id: 123456,
+        username: 'bob-loblaws-law-blog',
+        email: 'bobloblaw@example.com',
+        first_name: 'Bob',
+        last_name: 'Lowlaw',
+        account_number: '12345',
+        address_string: '"Bob Lowlaw" bobloblaw@example.com',
+        is_active: true,
+        is_org_admin: true,
+        is_internal: true,
+        locale: 'en_US',
+        org_id: '54321'
     },
-    personalInfo: {
-        company: pub.company,
-        firstName: pub.firstName,
-        greeting: 'Mr.',
-        lastName: pub.lastName,
-        suffix: null,
-        title: null,
-        email: pub.email,
-        emailConfirmed: true,
-        phoneNumber: pub.phoneNumber,
-        faxNumber: null,
-        locale: pub.locale,
-        timeZone: { name: pub.timeZone, rawOffset: -28800000 },
-        department: null
-    },
-    personalSite: null,
-    customer: {
-        id: pub.orgId,
-        name: pub.company,
-        password: null,
-        creditApplicationCompleted: false,
-        customerType: 'B',
-        oracleCustomerNumber: pub.accountNumber,
-        namedAccount: false,
-        createdDate: 1031342012000,
-        updatedDate: 1485798648944
-    },
-    createdDate: 1233334484000,
-    updatedDate: 1485798525623,
-    system: null,
-    userType: null
+    mechanism: 'basic'
+};
 
+module.exports.strataUserObject = {
+    user: {
+        id: 123456,
+        username: 'bob-loblaws-law-blog',
+        email: 'bobloblaw@example.com',
+        first_name: 'Bob',
+        last_name: 'Lowlaw',
+        account_number: '12345',
+        address_string: '"Bob Lowlaw" bobloblaw@example.com',
+        is_active: true,
+        is_org_admin: true,
+        is_internal: true,
+        locale: 'en_US',
+        org_id: '54321'
+    },
+    mechanism: 'cert'
 };
 
 module.exports.keycloakJwtUserObject = {
@@ -141,66 +132,4 @@ module.exports.keycloakJwtUserObject = {
     email: pub.email,
     username: pub.ssoUsername,
     DONT_CACHE: true
-};
-
-module.exports.strataUserObject = {
-    created_date: 1233334484000,
-    last_modified_date: 1485798525623,
-    account_number: pub.accountNumber,
-    is_active: true,
-    company: pub.company,
-    phone_number: pub.phoneNumber,
-    id: '98765',
-    first_name: pub.firstName,
-    last_name: pub.lastName,
-    org_id: pub.orgId,
-    email: pub.email,
-    last_logged_in_date: 1484697600000,
-    preferred_language: pub.locale,
-    greeting: 'Mr.',
-    timezone: pub.timezone,
-    locale: pub.locale,
-    org_admin: true,
-    is_entitled: true,
-    has_chat: false,
-    rights: {
-        right: [
-            { name: 'AllowEmailContact', has_access: false },
-            { name: 'AllowFaxContact', has_access: false },
-            { name: 'AllowMailContact', has_access: false },
-            { name: 'AllowPhoneContact', has_access: false },
-            { name: 'AllowThirdPartyContact', has_access: false },
-            { name: 'portal_manage_cases',
-              description: 'Customer Portal: Manage Support Cases',
-              has_access: true },
-            { name: 'portal_manage_subscriptions',
-              description: 'Customer Portal: Manage Subscriptions',
-              has_access: true },
-            { name: 'portal_download',
-              description: 'Customer Portal: Download Software and Updates',
-              has_access: true },
-            { name: 'portal_system_management',
-              description: 'Customer Portal: System Management',
-              has_access: true },
-            { name: 'cloud_access_1', role: [ 'Admin' ] },
-            { name: 'redhat:employees', role: [ 'User' ] },
-            { name: 'admin:org:all', role: [ 'Admin' ] },
-            { name: 'cservice', role: [ 'User' ] }
-        ]
-    },
-    is_internal: true,
-    address: {
-        address1: pub.address.street,
-        county: pub.address.county,
-        country_code: pub.address.countryCode,
-        po_box: pub.address.poBox,
-        postal_code: pub.address.postalCode,
-        state: pub.address.state,
-        city: pub.address.city
-    },
-    can_add_attachments: true,
-    can_access_all_accounts: true,
-    is_secure_support_tech: false,
-    ever_entitled: true,
-    sso_username: pub.ssoUsername
 };
