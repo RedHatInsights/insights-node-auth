@@ -44,6 +44,7 @@ tags
 .agignore
 .vimrc
 .tern-project
+.idea
 
 test/env.sh
 test.js

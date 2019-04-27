@@ -2,6 +2,7 @@
 
 require('assert');
 require('should');
+require('./env');
 const td      = require('testdouble');
 const Mocks   = require('./mocks');
 const samples = require('./samples');
