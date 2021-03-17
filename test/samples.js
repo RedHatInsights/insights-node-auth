@@ -39,6 +39,7 @@ module.exports.certUserObject =  {
         locale: 'en_US',
         org_id: '54321'
     },
+    cn: 'EAD1738838838',
     mechanism: 'cert'
 };
 

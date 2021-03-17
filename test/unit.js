@@ -245,11 +245,12 @@ describe('Unit Tests:', () => {
             };
 
             const validateCertUser = (userObject) => {
+                const input = getInput();
                 userObject.should.have.property('account_number', samples.pub.accountNumber);
                 userObject.should.have.property('org_id', samples.pub.orgId);
                 userObject.should.have.property('is_org_admin');
                 userObject.should.have.property('is_internal');
-                userObject.should.have.property('sso_username', `cert-system-${samples.pub.accountNumber}`);
+                userObject.should.have.property('sso_username', `SYSTEM-${input.cn}`);
             };
 
             it('should look like the standard user object', () => {
