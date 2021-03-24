@@ -37,7 +37,8 @@ module.exports.certUserObject =  {
         is_org_admin: true,
         is_internal: false,
         locale: 'en_US',
-        org_id: '54321'
+        org_id: '54321',
+        type: 'satellite'
     },
     cn: 'EAD1738838838',
     mechanism: 'cert'
