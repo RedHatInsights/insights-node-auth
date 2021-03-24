@@ -251,6 +251,7 @@ describe('Unit Tests:', () => {
                 userObject.should.have.property('is_org_admin');
                 userObject.should.have.property('is_internal');
                 userObject.should.have.property('sso_username', `SYSTEM-${input.cn}`);
+                userObject.should.have.property('type', input.type); 
             };
 
             it('should look like the standard user object', () => {
